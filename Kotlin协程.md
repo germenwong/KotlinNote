@@ -18,36 +18,19 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0-RC-native
 * 本质与其他线程 `api` 一样，==方便==
 * 最重要的是用看起来==同步的方式写出异步代码==， `kotlin` 最有名的==非阻塞式挂起==
 * 把运行在==不同线程的代码，写在同一个代码块里==
+* 改变并发任务的操作难度（质变）<img src="Kotlin协程/image-20220819095929753.png" alt="image-20220819095929753" style="zoom: 50%;" /><img src="Kotlin协程/image-20220819100332462.png" alt="image-20220819100332462" style="zoom: 50%;" /><img src="Kotlin协程/image-20220819100231637.png" alt="image-20220819100231637" style="zoom: 33%;" /><img src="Kotlin协程/image-20220819100248031.png" alt="image-20220819100248031" style="zoom: 33%;" />
 
-<img src="Kotlin协程/image-20220819095929753.png" alt="image-20220819095929753" style="zoom: 50%;" />
-
-* 改变并发任务的操作难度（质变）
-
-  <img src="Kotlin协程/image-20220819100332462.png" alt="image-20220819100332462" style="zoom: 50%;" /><img src="Kotlin协程/image-20220819100231637.png" alt="image-20220819100231637" style="zoom: 33%;" /><img src="Kotlin协程/image-20220819100248031.png" alt="image-20220819100248031" style="zoom: 33%;" />
-
-------
-
-
-
-
-
-
-
-## 基本使用
+### 基本使用
 
 一个 `launch` 函数，块里写上代码就能切线程
 
 **launch函数的含义：**创建一个新的协程，并在指定线程上运行它
 
-![image-20220819100545580](Kotlin协程/image-20220819100545580.png)
+<img src="Kotlin协程/image-20220819100545580.png" alt="image-20220819100545580" style="zoom:50%;" />
 
 **withContext()函数：**可以==指定线程==来执行代码，执行完成后==自动把线程切回来继续执行==
 
-![image-20220819103102960](Kotlin协程/image-20220819103102960.png)
-
-------
-
-
+<img src="Kotlin协程/image-20220819103102960.png" alt="image-20220819103102960" style="zoom: 40%;" />
 
 
 
@@ -57,7 +40,7 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0-RC-native
 
 ### 挂起函数
 
-* 使用`suspend`关键字修饰的函数叫作挂起函数。
+* 使用`suspend`关键字修饰的函数叫作==挂起函数。==
 * 挂起函数只能在==协程体内==或其他==挂起函数内==调用。
 
 ### 挂起与恢复
@@ -66,9 +49,9 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0-RC-native
 
 * **resume：**用于让已暂停的协程从其暂停处继续执行。
 
-  ![image-20220819110249741](Kotlin协程/image-20220819110249741.png)
+  <img src="Kotlin协程/image-20220819110249741.png" alt="image-20220819110249741" style="zoom: 67%;" />
 
-![image-20220819104953235](Kotlin协程/image-20220819104953235.png)
+<img src="Kotlin协程/image-20220819104953235.png" alt="image-20220819104953235" style="zoom: 50%;" />
 
 **suspend关键字的作用：**它对协程挂起没有实质的作用，它是==创建者对调用者的提醒==，==提醒调用者它是耗时任务，需要在协程里调用它==。
 
@@ -114,10 +97,6 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0-RC-native
 * **MainScope：**在`Activity`中使用,可以在` onDestroy()` 中取消协程。
 * **viewModelScope：**只能在 `ViewModel` 中使用，绑定 `ViewModel` 的生命周期。
 * **lifecycleScope：**只能在`Activity`、`Fragment` 中使用，会绑定 `Activity` 和 `Fragment` 的生命周期。
-
-------
-
-
 
 
 
