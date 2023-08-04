@@ -275,7 +275,7 @@ interface MyRepository {
 ```kotlin
 /**
  *  问题：
- *  1、如何把 MyApi 放入我们的存储库中，因为存储库中需要 MyApi 找个依赖
+ *  1、如何把 MyApi 放入我们的存储库中，因为存储库中需要 MyApi 这个依赖
  *  2、如何让 Dagger-Hilt 知道我们想在这里使用 MyApi
  *
  *  解决方案：
