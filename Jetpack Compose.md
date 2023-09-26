@@ -639,9 +639,12 @@ fun MoviesScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) {
 @Composable
 fun LandingScreen() {
     var name by remember { mutableStateOf("") }
-    LandingScreen(name = name, onValueChange = {
-        name = it
-    })
+    LandingScreen(
+        name = name, 
+        onValueChange = {
+        	name = it
+    	}
+    )
 }
 
 @Composable

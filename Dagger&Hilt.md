@@ -6,9 +6,9 @@
 
 运行前需要先编译一次项目，目的是用 APT 生成中间代码。Dagger2 不使用反射，在编译阶段生成代码，所以不会程序性能有影响。
 
-Dagger2 官网：[https://dagger.dev/](https://links.jianshu.com/go?to=https%3A%2F%2Fdagger.dev%2F)
+[Dagger2 官网](https://dagger.dev/)
 
-Dagger2 Github：[https://github.com/google/dagger](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fgoogle%2Fdagger)
+[Dagger2 Github](https://github.com/google/dagger)
 
 
 

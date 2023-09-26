@@ -26,10 +26,9 @@
 * `SP` 读写文件不是类型安全的，且没有发出错误信号的机制，缺少事务性 `API`
 
 * `commit() / apply()` 操作可能会造成 `ANR` 问题：
-
-  1. `commit()` 是同步提交，会在 `UI` 主线程中直接执行 `IO` 操作，当写入操作耗时比较长时就会导致 `UI` 线程被阻塞，进而产生 `ANR`
-
-  2. `apply()` 虽然是异步提交，但异步写入磁盘时，如果执行了 `Activity / Service中的onStop()` 方法，那么一样会同步等待SP写入完毕，等待时间过长时也会引起 `ANR` 问题。
+1. `commit()` 是同步提交，会在 `UI` 主线程中直接执行 `IO` 操作，当写入操作耗时比较长时就会导致 `UI` 线程被阻塞，进而产生 `ANR`
+  
+2. `apply()` 虽然是异步提交，但异步写入磁盘时，如果执行了 `Activity / Service中的onStop()` 方法，那么一样会同步等待SP写入完毕，等待时间过长时也会引起 `ANR` 问题。
 
 ### DataStore优势
 
@@ -158,14 +157,14 @@ binding.apply {
 ```kotlin
 fun getName(): Flow<String> {
     return dataStore.data.catch { exception 
-				//如果抛出IO异常，返回一个空的首选项
+		//如果抛出IO异常，返回一个空的首选项
         if (exception is IOException) {
             emit(emptyPreferences())
         } else {
             throw exception
         }
     }.map { pref ->
-				//根据 key 读取数据存入变量
+		//根据 key 读取数据存入变量
         name = pref[pref_name] ?: "no data"
         name
     }
